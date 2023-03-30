@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 
 using namespace std;
 
@@ -48,19 +49,19 @@ void findMedian(int arr[], int right, int len){
         int mid = right/2;
         float value = arr[mid] + arr[mid + 1];
         printArray(arr, 0, right);
-        cout << "\t\t" << float(value/2) << endl;
+        cout << "\t" << setprecision(1) << fixed << (value/2) << endl;
     }
     else{
         int mid = right/2;
         printArray(arr, 0, right);
-        cout << "\t\t" << float(arr[mid]) << endl;
+        cout << "\t" << setprecision(1) << fixed << static_cast<float>(arr[mid]) << endl;
     }
     right++;
     return findMedian(arr, right, len);
 }
 
 int main(){
-    int arr[9]{7,3,5,2,0,0,0,0,0};
-    findMedian(arr, 0, 9);
+    int arr[4]{7,3,5,2};
+    findMedian(arr, 0, 4);
 
 }
