@@ -2,21 +2,21 @@
 
 using namespace std;
 
-struct Node{
+struct Node{ // elements for store data in linked list
     int data;
     Node* prev;
 };
 
-class Stack{
+class Stack{ // stack class - Push(), Pop(), isEmpty(), StackTop(), Display()
     private: 
-        Node* top;
+        Node* top; // store the head of stack
     public:
         Stack(){
             top = NULL;
         }
 
-    void Push(int n){
-        if(isEmpty()){
+    void Push(int n){ // push into Stack (integer)
+        if(isEmpty()){ // if stack is empty
             top = new Node();
             top->data = n;
             top->prev = NULL;
@@ -29,7 +29,7 @@ class Stack{
     }
 
     int Pop(){
-        if(isEmpty()){
+        if(isEmpty()){ // nothing to pop
             cout << "Stack UnderFlow !";
             return 0;
         }
@@ -42,15 +42,15 @@ class Stack{
         return top == NULL;
     }
 
-    int StackTop(){
-        if(isEmpty()){
+    int StackTop(){ // return the data in top node
+        if(isEmpty()){ 
             cout << "Stack is Empty !";
             return 0;
         }
         return top->data;
     } 
 
-    void Display(){
+    void Display(){ // print the data in linked list
         Node* temp = top;
         cout << "Items are : ";
         while(temp->prev != NULL){
