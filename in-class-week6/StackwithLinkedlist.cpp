@@ -1,4 +1,5 @@
 #include<bits/stdc++.h>
+#include <chrono>
 
 using namespace std;
 
@@ -16,10 +17,11 @@ class Stack{ // stack class - Push(), Pop(), isEmpty(), StackTop(), Display()
         }
 
     void Push(int n){ // push into Stack (integer)
-        if(isEmpty()){ // if stack is empty
+        if(top == NULL){ // if stack is empty
             top = new Node();
             top->data = n;
             top->prev = NULL;
+            return;
         }
         Node* node;
         node = new Node();
@@ -29,7 +31,7 @@ class Stack{ // stack class - Push(), Pop(), isEmpty(), StackTop(), Display()
     }
 
     int Pop(){
-        if(isEmpty()){ // nothing to pop
+        if(top == NULL){ // nothing to pop
             cout << "Stack UnderFlow !";
             return 0;
         }
@@ -43,7 +45,7 @@ class Stack{ // stack class - Push(), Pop(), isEmpty(), StackTop(), Display()
     }
 
     int StackTop(){ // return the data in top node
-        if(isEmpty()){ 
+        if(top == NULL){ 
             cout << "Stack is Empty !";
             return 0;
         }
@@ -62,7 +64,8 @@ class Stack{ // stack class - Push(), Pop(), isEmpty(), StackTop(), Display()
 };
 
 int main(){
-Stack stack;
+    auto begin = chrono::high_resolution_clock::now();
+    Stack stack;
     stack.Push(8);
     stack.Push(10);
     stack.Push(5);
@@ -85,4 +88,9 @@ Stack stack;
     stack.Push(3);
     stack.Push(1);
     stack.Display();
+
+    auto end = chrono::high_resolution_clock::now();
+    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
+    printf("Time measured: %.3f seconds.\n", elapsed.count() * 1e-9);
+    cout << endl;
 }

@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <chrono>
 
 using namespace std;
 
@@ -13,15 +14,12 @@ class Stack{
         }
 
         void Push(int n){ // add data into the Stack
-            if(isFull()){
-                return;
-            }
             top++;
             arr[top] = n;
         }
         
         int Pop(){ // remove data from the Stack(remove from the top)
-            if(isEmpty())
+            if(top < 0)
                 return 0;
             int temp = arr[top];
             top--;
@@ -49,9 +47,12 @@ class Stack{
 }
 };
 int main(){
-    cout << "Enter the Size of Array : ";
-    int n;
-    cin >> n;
+    //cout << "Enter the Size of Array : ";
+    int n = 100;
+    //cin >> n;
+
+    auto begin = chrono::high_resolution_clock::now();
+    
     Stack stack(n);
     stack.Push(8);
     stack.Push(10);
@@ -75,4 +76,9 @@ int main(){
     stack.Push(3);
     stack.Push(1);
     stack.Display();
+    
+    auto end = chrono::high_resolution_clock::now();
+    auto elapsed = chrono::duration_cast<chrono::nanoseconds>(end - begin);
+    printf("Time measured: %.3f seconds.\n", elapsed.count() * 1e-9);
+    cout << endl;
 }
