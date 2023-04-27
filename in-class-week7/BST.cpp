@@ -34,35 +34,34 @@ struct node *insertNode(struct node *node, int key) {
 
 // Deleting a node
 struct node *deleteNode(struct node *root, int key) {
- if ( root == nullptr ){
+ if ( root == NULL ){
     return root ;
+  }else if(root->key == key){
+    if (root->left == NULL && root->right == NULL){
+            root = NULL;
+        }
+        else if (root->right == NULL){ // if right is null then left is assign to root
+            root = root->left;
+        }
+        else if (root ->left == NULL){ // if left is null then right is assing to root
+            root = root->right;
+        }
+        else{ // if root has two branches (left and right then highest value in left branch is assign to root)
+            struct node* nd = root->left; // select left branch
+            while(nd->right != NULL){ // highest value is in most right branch
+                nd = nd->right;
+            }
+            root->key = nd->key; // change root key with left most right node's key
+            root ->left = deleteNode(root->left , nd->key);
+    }
   }
   else if(  root->key < key )  { // delete from right
     root->right = deleteNode(root->right , key);
   }
   else if( root->key > key  ){ // delete from left
     root->left = deleteNode(root->left , key);
-  }else{
-    if (root->left == nullptr && root->right == nullptr){
-            root = nullptr;
-        }
-        else if (root->right == nullptr){
-            root = root->left;
-        }
-        else if (root ->left == nullptr){
-            root = root->right;
-        }
-        else{
-            
-            struct node* nd = root->left;
-            while(nd->right != nullptr){
-                nd = nd->right;
-            }
-            int data = nd ->key;
-            root->key = data;
-            root ->left = deleteNode(root->left , data);
-    }
-  } return root;
+  }
+  return root;
 }
 
 // Driver code
