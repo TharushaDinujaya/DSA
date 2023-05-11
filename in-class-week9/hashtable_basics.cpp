@@ -29,7 +29,7 @@ struct HashTable{
         //add your code below
         
         for(char ch : user_name){
-            sum += int(ch);
+            sum += int(ch); // sum all the ASCII values of characters in String
         }
 	
         hash = sum % MAX_LENGTH;
@@ -48,9 +48,9 @@ struct HashTable{
 	    //add an if condition to complete the code here
         
         if(empty){
-            password[hash] = user_password;
+            password[hash] = user_password; // if slot is empty then add value to it
         }else{
-            cout << "Collision ! " << endl;
+            cout << "Collision ! " << endl; // if slot is already taken, then print "Collision"
         }
     }
     void hash_lookup(string user_name){
@@ -61,9 +61,9 @@ struct HashTable{
         //add an if condition to complete the code here
         
         if(empty){
-            cout << "No items in this slot ! " << endl;
+            cout << "No items in this slot ! " << endl; // if Slot is empty
         }else{
-            cout << "Password : " << password[hash] << endl;
+            cout << "Password : " << password[hash] << endl; // print correspoding password for hash value
         }
         
     }
